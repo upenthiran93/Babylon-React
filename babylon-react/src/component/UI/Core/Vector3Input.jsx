@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import FloatInput from "./FloatInput.jsx";
-const Vector3Input = ({ id, title, label, value, onChange }) => {
+const Vector3Input = ({ id, label, onChange }) => {
     const [x, setX] = useState(0);
     const [y, setY] = useState(0);
     const [z, setZ] = useState(0);
@@ -15,7 +15,7 @@ const Vector3Input = ({ id, title, label, value, onChange }) => {
         <div className=" UI menu" id="inspector-menu-bar" >
 
                 <div className="vectorInput">
-                    <h3>title</h3>
+                    <h3>{label}</h3>
                     <FloatInput
                         id="x"
                         name="x"

@@ -23,7 +23,7 @@ export default function InspectorMenuBar() {
             <form>
 
                 <div>
-                    <Vector3Input id="vector3" name="vector3" label="Vector3" value={{x, y, z}} onChange={updateVector }  />
+                    <Vector3Input id="vector3"  label="Vector3"  onChange={updateVector }  />
 
                 </div>
 
