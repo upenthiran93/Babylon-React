@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import FloatInput from "./FloatInput.jsx";
-const Vector3Input = ({ id, label, onChange }) => {
-    const [x, setX] = useState(0);
-    const [y, setY] = useState(0);
-    const [z, setZ] = useState(0);
+const Vector3Input = ({ initVal, label, onChange }) => {
+    const [x, setX] = useState(initVal[0]);
+    const [y, setY] = useState(initVal[1]);
+    const [z, setZ] = useState(initVal[2]);
     useEffect(() => {
         if (onChange){
             onChange([x, y, z]);

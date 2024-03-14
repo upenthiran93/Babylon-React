@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 //import { FreeCamera, Vector3, HemisphericLight, MeshBuilder,ArcRotateCamera,ShadowGenerator ,DirectionalLight} from "@babylonjs/core";
 import {initScreen} from "./Script/int.js";
 
@@ -14,15 +14,23 @@ const onSceneReady = (scene) => {
 const onRender = (scene) => {
 
 };
-export default () => (
+export default () =>{
+    const [isSceneReady, setIsSceneReady] = useState(false);
+
+    const onSceneReady = (scene) => {
+        initScreen(scene);
+        setIsSceneReady(true);
+    };
+
+    return(
 <>
 
     <SceneComponent antialias onSceneReady={onSceneReady} onRender={onRender} id="my-canvas" />
     <div id="ui-container">
         <FileMenuBar/>
-        <InspectorMenuBar/>
+        {isSceneReady&& <InspectorMenuBar/>}
     </div>
 
 </>
 
-);
+);}

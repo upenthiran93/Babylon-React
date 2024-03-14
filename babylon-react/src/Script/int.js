@@ -16,7 +16,7 @@ export function initScreen(scene)
     box = MeshBuilder.CreateBox("box", { size: 2 }, scene);
     const shadowGenerator = new ShadowGenerator(1024, light);
     shadowGenerator.addShadowCaster(box);
-    box.position.y = 1;
+    box.position.y = 0;
 
     // Our built-in 'ground' shape.
     const ground =   MeshBuilder.CreateGround("ground", { width: 6, height: 6 }, scene);
@@ -24,4 +24,6 @@ export function initScreen(scene)
     ground.position.y = -1;
     ground.receiveShadows = true;
 }
+
+ export const selectedObject= ()=>{return box};
 
