@@ -107,7 +107,7 @@ button:focus-visible {
 
 }
 #inspector-menu-bar{
-  grid-area: 2 / 13 / 21 / 21;
+  grid-area: 2 / 18 / 21 / 21;
 }
 .FloatInput{
   display: inline-flex;
