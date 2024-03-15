@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import FloatInput from "./FloatInput.jsx";
+import FloatInput from "../FloatInPut/FloatInput.jsx";
 
 const Vector3Input = ({ initVal, label, onChange }) => {
     const [x, setX] = useState(initVal[0]);

@@ -1,55 +1,54 @@
-import Vector3Input from "./Vector3Input.jsx";
-import React, { useEffect, useState } from "react";
+import Vector3Input from "./Vector3/Vector3Input.jsx";
+import React, { useEffect, useState, useContext } from "react";
+import {SelectedObjectContext} from "../../../App.jsx";
 
-const TransformUI = ({ selectedObject }) => {
-    const [object, setObject] = useState(null);
+const TransformUI = () => {
+
+    const selectedObjectContext = useContext(SelectedObjectContext);
 
 
 
-    // Update the object state when selectedObject changes
-    useEffect(() => {
-        setObject(selectedObject);
-    }, [selectedObject]);
+
 
     function setPosition([x, y, z]) {
-        if (object) {
-            object.position.x = x;
-            object.position.y = y;
-            object.position.z = z;
+        if (selectedObjectContext) {
+            selectedObjectContext.position.x = x;
+            selectedObjectContext.position.y = y;
+            selectedObjectContext.position.z = z;
             // Ensure state update triggers re-render
 
         }
     }
 
     function setRotation([x, y, z]) {
-        if (object) {
-            object.rotation.x = x;
-            object.rotation.y = y;
-            object.rotation.z = z;
+        if (selectedObjectContext) {
+            selectedObjectContext.rotation.x = x;
+            selectedObjectContext.rotation.y = y;
+            selectedObjectContext.rotation.z = z;
             // Ensure state update triggers re-render
 
         }
     }
 
     function setScaling([x, y, z]) {
-        if (object) {
-            object.scaling.x = x;
-            object.scaling.y = y;
-            object.scaling.z = z;
+        if (selectedObjectContext) {
+            selectedObjectContext.scaling.x = x;
+            selectedObjectContext.scaling.y = y;
+            selectedObjectContext.scaling.z = z;
             // Ensure state update triggers re-render
 
         }
     }
 
 
-    const positionInitVal = object ? [object.position.x, object.position.y, object.position.z] : [0, 0, 0];
-    const rotationInitVal = object ? [object.rotation.x, object.rotation.y, object.rotation.z] : [0, 0, 0];
-    const scalingInitVal = object ? [object.scaling.x, object.scaling.y, object.scaling.z] : [1, 1, 1];
+    const positionInitVal = selectedObjectContext ? [selectedObjectContext.position.x, selectedObjectContext.position.y, selectedObjectContext.position.z] : [0, 0, 0];
+    const rotationInitVal = selectedObjectContext ? [selectedObjectContext.rotation.x, selectedObjectContext.rotation.y, selectedObjectContext.rotation.z] : [0, 0, 0];
+    const scalingInitVal = selectedObjectContext ? [selectedObjectContext.scaling.x, selectedObjectContext.scaling.y, selectedObjectContext.scaling.z] : [1, 1, 1];
 
     return (
-        object ? (
-            <div>
-                <h3>Transform: {object.name}</h3>
+        selectedObjectContext ? (
+            <div className={"transform-container"}>
+                <h2>Transform</h2>
                 <Vector3Input id="position" label="Position" onChange={setPosition} initVal={positionInitVal} />
                 <Vector3Input id="rotation" label="Rotation" onChange={setRotation} initVal={rotationInitVal} />
                 <Vector3Input id="scaling" label="Scaling" onChange={setScaling} initVal={scalingInitVal} />
