@@ -1,10 +1,10 @@
 import Vector3Input from "./Vector3Input.jsx";
 import React, {useEffect, useState} from "react";
 const TransformUI = ({ selectedObject }) => {
-    const [object, setObject] = useState(selectedObject());
+    const [object, setObject] = useState(selectedObject);
 
     useEffect(() => {
-        setObject(selectedObject());
+        setObject(selectedObject);
     }, [selectedObject]);
 
     function setPosition([x, y, z]) {
@@ -35,7 +35,7 @@ const TransformUI = ({ selectedObject }) => {
 
     return (
         <div>
-            <h3>Transform</h3>
+            <h3>Transform :{object.name} </h3>
             <Vector3Input id="position" label="Position" onChange={setPosition} initVal={[0, 0, 0]} />
             <Vector3Input id="rotation" label="Rotation" onChange={setRotation} initVal={[0, 0, 0]} />
             <Vector3Input id="scaling" label="Scaling" onChange={setScaling} initVal={[1, 1, 1]} />

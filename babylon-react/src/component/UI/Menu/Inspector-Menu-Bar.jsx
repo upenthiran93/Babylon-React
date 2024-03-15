@@ -4,9 +4,11 @@ import Vector3Input from "../Core/Vector3Input.jsx";
 import {selectedObject} from "../../../Script/int.js";
 import TransformUI from "../Core/Transform-UI.jsx";
 
-export default function InspectorMenuBar() {
+export default function InspectorMenuBar({object}) {
 
-
+useEffect(()=>{
+    console.log(object)
+},[object])
 
 
 
@@ -15,7 +17,7 @@ export default function InspectorMenuBar() {
 
                 <div>
 
-                    <TransformUI selectedObject={selectedObject} />
+                    <TransformUI selectedObject={object} />
 
                 </div>
 
