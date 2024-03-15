@@ -2,8 +2,11 @@ import Vector3Input from "./Vector3Input.jsx";
 import React, { useEffect, useState } from "react";
 
 const TransformUI = ({ selectedObject }) => {
-    const [object, setObject] = useState(selectedObject);
+    const [object, setObject] = useState(null);
 
+
+
+    // Update the object state when selectedObject changes
     useEffect(() => {
         setObject(selectedObject);
     }, [selectedObject]);
@@ -13,6 +16,8 @@ const TransformUI = ({ selectedObject }) => {
             object.position.x = x;
             object.position.y = y;
             object.position.z = z;
+            // Ensure state update triggers re-render
+
         }
     }
 
@@ -21,6 +26,8 @@ const TransformUI = ({ selectedObject }) => {
             object.rotation.x = x;
             object.rotation.y = y;
             object.rotation.z = z;
+            // Ensure state update triggers re-render
+
         }
     }
 
@@ -29,10 +36,12 @@ const TransformUI = ({ selectedObject }) => {
             object.scaling.x = x;
             object.scaling.y = y;
             object.scaling.z = z;
+            // Ensure state update triggers re-render
+
         }
     }
 
-    // Set initial values based on the object's properties
+
     const positionInitVal = object ? [object.position.x, object.position.y, object.position.z] : [0, 0, 0];
     const rotationInitVal = object ? [object.rotation.x, object.rotation.y, object.rotation.z] : [0, 0, 0];
     const scalingInitVal = object ? [object.scaling.x, object.scaling.y, object.scaling.z] : [1, 1, 1];
