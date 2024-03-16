@@ -1,5 +1,4 @@
-import React, {useState, useContext, useRef, useEffect} from "react";
-import { Engine, Scene } from "@babylonjs/core";
+import React, { useState, useEffect } from "react";
 import { initScreen } from "./Script/int.js";
 import SceneComponent from "./component/SceneComponent.jsx";
 import "./App.css";
@@ -10,69 +9,58 @@ export const SelectedObjectContext = React.createContext(null);
 
 const App = () => {
     const [isSceneReady, setIsSceneReady] = useState(false);
-    const [selectedObject, setSelectedObject] = useState(null);
     const [scene, setScene] = useState(null);
     const [mesh, setMesh] = useState(null);
     const [canvas, setCanvas] = useState(null);
 
+    // Event listeners setup and cleanup
     useEffect(() => {
         if (canvas) {
-            canvas.addEventListener("click",()=> handleCanvasClick(scene));
+            canvas.addEventListener("click", handleCanvasClick);
+            return () => {
+                canvas.removeEventListener("click", handleCanvasClick);
+            };
         }
-        return () => {
-            if (canvas) {
-                canvas.removeEventListener("click",()=> handleCanvasClick(scene));
-            }
-        }
+    }, [canvas]);
 
-    }, [scene,canvas]);
-
+    // Log mesh whenever it changes
     useEffect(() => {
         console.log(mesh);
     }, [mesh]);
 
-
-
-
-
+    // Callback function when scene is ready
     const onSceneReady = (scene) => {
         initScreen(scene);
         setIsSceneReady(true);
     };
 
-    const handleSelectedObject = (obj) => {
-        setSelectedObject(obj);
+    // Callback function when scene is created
+    const onSceneCreated = ({ newScene, canvas }) => {
+        setScene(newScene);
+        setCanvas(canvas);
     };
-    const onSceneCreated = ({newScene ,canvas}) => {
 
-            setScene(newScene);
-            setCanvas(canvas);
-
-        }
-
-    const handleCanvasClick = (scene) => {
-        const pickInfo = scene.pick(scene.pointerX, scene.pointerY);
-        if (pickInfo.hit) {
-            const pickedMesh = pickInfo.pickedMesh;
-            if (pickedMesh) {
+    // Handle canvas click event
+    const handleCanvasClick = () => {
+        if (scene) {
+            const pickInfo = scene.pick(scene.pointerX, scene.pointerY);
+            if (pickInfo.hit) {
+                const pickedMesh = pickInfo.pickedMesh;
                 setMesh(pickedMesh);
-
+            } else {
+                setMesh(null);
             }
-        } else {
-            setMesh(null);
         }
-
-
     };
 
     return (
         <>
-            <SceneComponent antialias onSceneReady={onSceneReady} selectedObject={handleSelectedObject}  onSceneCreated={onSceneCreated}  id="my-canvas" />
-            <SelectedObjectContext.Provider value={selectedObject}>
-            <div id="ui-container">
-                <FileMenuBar />
-                {isSceneReady && <InspectorMenuBar  />}
-            </div>
+            <SceneComponent antialias onSceneReady={onSceneReady} onSceneCreated={onSceneCreated} id="my-canvas" />
+            <SelectedObjectContext.Provider value={mesh}>
+                <div id="ui-container">
+                    <FileMenuBar />
+                    {isSceneReady && <InspectorMenuBar />}
+                </div>
             </SelectedObjectContext.Provider>
         </>
     );
