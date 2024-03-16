@@ -31,7 +31,8 @@ export default function FileMenuBar() {
         toggleCanSelect(false);
     }
 
-    const GizmoSelectActivate = () => {
+    const GizmoSelectActivate = (e) => {
+
         gizmoManager.positionGizmoEnabled = false;
         gizmoManager.rotationGizmoEnabled = false;
         gizmoManager.scaleGizmoEnabled = false;
@@ -41,10 +42,10 @@ export default function FileMenuBar() {
     return (
         <div className="UI menu" id="file-menu-bar">
             <div className={"Toolbar"}>
-                <ButtonFileMenu Text={""} Action={GizmoSelectActivate} bg={"../public/icon/Select.png"} />
-                <ButtonFileMenu Text={""} Action={GizmoMoveActivate} bg={"../public/icon/Move.png"} />
-                <ButtonFileMenu Text={""} Action={GizmoRotateActivate} bg={"../public/icon/Rotate.png"} />
-                <ButtonFileMenu Text={""} Action={GizmoScaleActivate} bg={"../public/icon/Scal.png"} />
+                <ButtonFileMenu  Action={GizmoSelectActivate} bg={"../public/icon/Select.png"} />
+                <ButtonFileMenu  Action={GizmoMoveActivate} bg={"../public/icon/Move.png"} />
+                <ButtonFileMenu  Action={GizmoRotateActivate} bg={"../public/icon/Rotate.png"} />
+                <ButtonFileMenu  Action={GizmoScaleActivate} bg={"../public/icon/Scal.png"} />
             </div>
         </div>
     );
