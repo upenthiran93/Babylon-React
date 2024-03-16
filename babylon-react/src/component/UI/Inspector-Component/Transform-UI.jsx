@@ -4,7 +4,8 @@ import {SelectedObjectContext} from "../../../App.jsx";
 
 const TransformUI = () => {
 
-    const selectedObjectContext = useContext(SelectedObjectContext);
+    const Context = useContext(SelectedObjectContext);
+    const selectedObjectContext = Context.mesh;
 
 
 

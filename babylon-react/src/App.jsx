@@ -4,6 +4,7 @@ import SceneComponent from "./component/SceneComponent.jsx";
 import "./App.css";
 import FileMenuBar from "./component/UI/Menu/FileMenuBar/FileMenuBar.jsx";
 import InspectorMenuBar from "./component/UI/Menu/Inspector-Menu-Bar.jsx";
+import {GizmoManager} from "@babylonjs/core/Gizmos";
 
 export const SelectedObjectContext = React.createContext(null);
 
@@ -12,6 +13,7 @@ const App = () => {
     const [scene, setScene] = useState(null);
     const [mesh, setMesh] = useState(null);
     const [canvas, setCanvas] = useState(null);
+    const [gizmoManager, setGizmoManager] = useState(null);
 
     // Event listeners setup and cleanup
     useEffect(() => {
@@ -23,9 +25,15 @@ const App = () => {
         }
     }, [canvas]);
 
+
+
     // Log mesh whenever it changes
     useEffect(() => {
         console.log(mesh);
+        if(mesh){
+            gizmoManager.attachToMesh(mesh);
+            gizmoManager.positionGizmoEnabled = true;
+        }
     }, [mesh]);
 
     // Callback function when scene is ready
@@ -38,6 +46,14 @@ const App = () => {
     const onSceneCreated = ({ newScene, canvas }) => {
         setScene(newScene);
         setCanvas(canvas);
+        if(newScene){
+            setGizmoManager(new GizmoManager(newScene))
+
+
+        }
+
+
+
     };
 
     // Handle canvas click event
@@ -52,11 +68,11 @@ const App = () => {
             }
         }
     };
-
+    const BJS = { mesh, gizmoManager, scene };
     return (
         <>
             <SceneComponent antialias onSceneReady={onSceneReady} onSceneCreated={onSceneCreated} id="my-canvas" />
-            <SelectedObjectContext.Provider value={mesh}>
+            <SelectedObjectContext.Provider value={BJS}>
                 <div id="ui-container">
                     <FileMenuBar />
                     {isSceneReady && <InspectorMenuBar />}

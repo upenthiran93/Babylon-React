@@ -30,8 +30,7 @@ export default function SceneComponent({ antialias, engineOptions, adaptToDevice
             return scene;
         });
 
-        const gizmoManager = new GizmoManager(scene);
-        gizmoManager.positionGizmoEnabled = true;
+
 
         if (scene.isReady()) {
             onSceneReady(scene);
@@ -63,6 +62,7 @@ export default function SceneComponent({ antialias, engineOptions, adaptToDevice
     // Console log the correct variable (scene)
     useEffect(() => {
         onSceneCreated({ newScene ,canvas});
+
     }, [newScene]);
 
     return (
