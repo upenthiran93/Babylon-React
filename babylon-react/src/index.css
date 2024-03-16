@@ -102,10 +102,7 @@ button:focus-visible {
 }
 
 
-#file-menu-bar{
-  grid-area: 1 / 1 / 2 / 21;
 
-}
 #inspector-menu-bar{
   grid-area: 2 / 18 / 21 / 21;
 }

@@ -1,0 +1,9 @@
+.menu-button{
+ border: #888888 1px solid;
+    background-color: inherit;
+    height: 90%;
+    margin:  0.1em;
+}
+.menu-button:hover{
+  background-color: #888888;
+}

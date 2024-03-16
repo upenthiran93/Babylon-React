@@ -35,11 +35,9 @@ export default function SceneComponent({ antialias, engineOptions, adaptToDevice
             if (pickInfo.hit) {
                 const mesh = pickInfo.pickedMesh;
                 if (mesh) {
-                    // Update <p> element with mesh information
                     setMesh(mesh);
                 }
             } else {
-                // Update <p> element with scene information
                 setMesh(null);
             }
         };

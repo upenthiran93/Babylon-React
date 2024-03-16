@@ -1,0 +1,9 @@
+#file-menu-bar{
+    grid-area: 1 / 1 / 2 / 21;
+
+}
+.Toolbar{
+    display: inline-flex;
+    height: 100%;
+
+}
