@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { initScreen } from "./Script/int.js";
 import SceneComponent from "./component/SceneComponent.jsx";
 import "./App.css";
 import FileMenuBar from "./component/UI/Menu/FileMenuBar/FileMenuBar.jsx";
 import InspectorMenuBar from "./component/UI/Menu/Inspector-Menu-Bar.jsx";
-import {GizmoManager} from "@babylonjs/core/Gizmos";
+import { GizmoManager } from "@babylonjs/core/Gizmos";
 
 export const SelectedObjectContext = React.createContext(null);
 
@@ -14,65 +14,62 @@ const App = () => {
     const [mesh, setMesh] = useState(null);
     const [canvas, setCanvas] = useState(null);
     const [gizmoManager, setGizmoManager] = useState(null);
+    const [canSelect, setCanSelect] = useState(false);
+    const canSelectRef = useRef(canSelect);
 
-    // Event listeners setup and cleanup
     useEffect(() => {
+        canSelectRef.current = canSelect;
+        if (gizmoManager) {
+            gizmoManager.attachToMesh(mesh);
+        }
+    }, [canSelect]);
+
+    useEffect(() => {
+        const handleCanvasClick = () => {
+            if (scene && canSelectRef.current) {
+                const pickInfo = scene.pick(scene.pointerX, scene.pointerY);
+                if (pickInfo.hit) {
+                    const pickedMesh = pickInfo.pickedMesh;
+                    setMesh(pickedMesh);
+                } else {
+                    setMesh(null);
+                }
+            }
+        };
+
         if (canvas) {
             canvas.addEventListener("click", handleCanvasClick);
             return () => {
                 canvas.removeEventListener("click", handleCanvasClick);
             };
         }
-    }, [canvas]);
+    }, [canvas, scene]);
 
-
-
-    // Log mesh whenever it changes
     useEffect(() => {
-        console.log(mesh);
-        if(mesh){
-            gizmoManager.attachToMesh(mesh);
-            gizmoManager.positionGizmoEnabled = true;
+        if (gizmoManager) {
+            gizmoManager.usePointerToAttachGizmos = false;
         }
-    }, [mesh]);
+    }, [gizmoManager]);
 
-    // Callback function when scene is ready
     const onSceneReady = (scene) => {
         initScreen(scene);
         setIsSceneReady(true);
     };
 
-    // Callback function when scene is created
     const onSceneCreated = ({ newScene, canvas }) => {
         setScene(newScene);
         setCanvas(canvas);
-        if(newScene){
-            setGizmoManager(new GizmoManager(newScene))
-
-
-        }
-
-
-
-    };
-
-    // Handle canvas click event
-    const handleCanvasClick = () => {
-        if (scene) {
-            const pickInfo = scene.pick(scene.pointerX, scene.pointerY);
-            if (pickInfo.hit) {
-                const pickedMesh = pickInfo.pickedMesh;
-                setMesh(pickedMesh);
-            } else {
-                setMesh(null);
-            }
+        if (newScene) {
+            setGizmoManager(new GizmoManager(newScene));
         }
     };
-    const BJS = { mesh, gizmoManager, scene };
+
+    const bjsData = { mesh, gizmoManager, scene, setCanSelect };
+
     return (
         <>
             <SceneComponent antialias onSceneReady={onSceneReady} onSceneCreated={onSceneCreated} id="my-canvas" />
-            <SelectedObjectContext.Provider value={BJS}>
+            <SelectedObjectContext.Provider value={bjsData}>
                 <div id="ui-container">
                     <FileMenuBar />
                     {isSceneReady && <InspectorMenuBar />}

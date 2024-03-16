@@ -7,3 +7,8 @@
 .menu-button:hover{
   background-color: #888888;
 }
+
+/* Style the label when checkbox is checked */
+ input[type="checkbox"]  {
+    display: none;
+}
