@@ -5,24 +5,24 @@ import { GizmoManager } from "@babylonjs/core/Gizmos";
 export default function SceneComponent({ antialias, engineOptions, adaptToDeviceRatio, sceneOptions, onRender, onSceneReady,onSceneCreated, selectedObject, ...rest }) {
     const reactCanvas = useRef(null);
     const [mesh, setMesh] = useState(null);
-    const [newEngine, setEngine] = useState(null);
     const [newScene, setScene] = useState(null);
+    const [canvas, setCanvas] = useState(null);
 
     // set up basic engine and scene
     useEffect(() => {
         const { current: canvas } = reactCanvas;
 
         if (!canvas) return;
-
+        setCanvas(preCanvas => {
+            if (preCanvas) {
+                preCanvas.dispose();
+            }
+            return canvas;
+        });
         const engine = new Engine(canvas, antialias, engineOptions, adaptToDeviceRatio);
         const scene = new Scene(engine, sceneOptions);
 
-        setEngine(prevEngine => {
-            if (prevEngine) {
-                prevEngine.dispose(); // Dispose the previous engine to avoid memory leaks
-            }
-            return engine;
-        });
+
 
         setScene(prevScene => {
             if (prevScene) {
@@ -79,7 +79,7 @@ export default function SceneComponent({ antialias, engineOptions, adaptToDevice
 
     // Console log the correct variable (scene)
     useEffect(() => {
-        onSceneCreated( newScene);
+        onSceneCreated({ newScene ,canvas});
     }, [newScene]);
 
     return (
