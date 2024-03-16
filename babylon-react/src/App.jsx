@@ -10,7 +10,7 @@ export const BJS = React.createContext(null);
 const App = () => {
     const [isSceneReady, setIsSceneReady] = useState(false);
     const [selectedObject, setSelectedObject] = useState(null);
-
+    const [scene, setScene] = useState(null);
 
     const onSceneReady = (scene) => {
         initScreen(scene);
@@ -20,10 +20,15 @@ const App = () => {
     const handleSelectedObject = (obj) => {
         setSelectedObject(obj);
     };
+        const onSceneCreated = (e) => {
+
+            setScene(e);
+            console.log(e);
+        }
 
     return (
         <>
-            <SceneComponent antialias onSceneReady={onSceneReady} selectedObject={handleSelectedObject} id="my-canvas" />
+            <SceneComponent antialias onSceneReady={onSceneReady} selectedObject={handleSelectedObject}  onSceneCreated={onSceneCreated}  id="my-canvas" />
             <SelectedObjectContext.Provider value={selectedObject}>
             <div id="ui-container">
                 <FileMenuBar />
