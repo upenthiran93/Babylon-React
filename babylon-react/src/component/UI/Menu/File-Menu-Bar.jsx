@@ -1,7 +1,12 @@
+import ButtonFileMenu from "../Core/ButtonFileMenu/ButtonFileMenu.jsx";
+
 export default function FileMenuBar() {
   return (
     <div className=" UI menu" id="file-menu-bar" >
-menu
+      <div>
+          <ButtonFileMenu/>
+
+      </div>
     </div>
   );
 }

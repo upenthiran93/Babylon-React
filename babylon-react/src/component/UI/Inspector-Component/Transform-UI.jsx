@@ -1,4 +1,4 @@
-import Vector3Input from "./Vector3/Vector3Input.jsx";
+import Vector3Input from "../Core/Vector3/Vector3Input.jsx";
 import React, { useEffect, useState, useContext } from "react";
 import {SelectedObjectContext} from "../../../App.jsx";
 

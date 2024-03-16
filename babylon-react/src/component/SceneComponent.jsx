@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { Engine, Scene } from "@babylonjs/core";
+import { GizmoManager, AxisDragGizmo } from "@babylonjs/core/Gizmos";
 
 export default function SceneComponent({ antialias, engineOptions, adaptToDeviceRatio, sceneOptions, onRender, onSceneReady, selectedObject, ...rest }) {
     const reactCanvas = useRef(null);
-    const [pickmesh, setMesh] = useState(null);
+    const [Mesh, setMesh] = useState(null);
 
     // set up basic engine and scene
     useEffect(() => {
@@ -13,6 +14,14 @@ export default function SceneComponent({ antialias, engineOptions, adaptToDevice
 
         const engine = new Engine(canvas, antialias, engineOptions, adaptToDeviceRatio);
         const scene = new Scene(engine, sceneOptions);
+        const gizmoManager = new GizmoManager(scene);
+        gizmoManager.positionGizmoEnabled = true;
+        // gizmoManager.rotationGizmoEnabled = true;
+        // gizmoManager.scaleGizmoEnabled = true;
+        // gizmoManager.boundingBoxGizmoEnabled = true;
+
+
+
         if (scene.isReady()) {
             onSceneReady(scene);
         } else {
@@ -62,9 +71,9 @@ export default function SceneComponent({ antialias, engineOptions, adaptToDevice
 
     // Call selectedObject whenever pickmesh changes
     useEffect(() => {
-        selectedObject(pickmesh);
+        selectedObject(Mesh);
 
-    }, [pickmesh]);
+    }, [Mesh]);
 
     return (
         <>

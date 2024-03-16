@@ -1,5 +1,6 @@
+import TransformUI from "../Inspector-Component/Transform-UI.jsx";
+import InspectorTitle from "../Inspector-Component/Inspector-Title.jsx";
 
-import TransformUI from "../Core/Transform-UI.jsx";
 
 export default function InspectorMenuBar() {
 
@@ -7,9 +8,9 @@ export default function InspectorMenuBar() {
         <div className=" UI menu" id="inspector-menu-bar" >
 
                 <div>
+                    <InspectorTitle/>
 
                     <TransformUI  />
-
                 </div>
 
         </div>
