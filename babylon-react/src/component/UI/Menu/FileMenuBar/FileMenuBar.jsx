@@ -41,11 +41,15 @@ export default function FileMenuBar() {
 
     return (
         <div className="UI menu" id="file-menu-bar">
+
+            <div className={"Create"}>
+                <ButtonFileMenu Action={null} Text={"C"} />
+            </div>
             <div className={"Toolbar"}>
-                <ButtonFileMenu  Action={GizmoSelectActivate} bg={"../public/icon/Select.png"} />
-                <ButtonFileMenu  Action={GizmoMoveActivate} bg={"../public/icon/Move.png"} />
-                <ButtonFileMenu  Action={GizmoRotateActivate} bg={"../public/icon/Rotate.png"} />
-                <ButtonFileMenu  Action={GizmoScaleActivate} bg={"../public/icon/Scal.png"} />
+                <ButtonFileMenu Action={GizmoSelectActivate} bg={"../public/icon/Select.png"}/>
+                <ButtonFileMenu Action={GizmoMoveActivate} bg={"../public/icon/Move.png"}/>
+                <ButtonFileMenu Action={GizmoRotateActivate} bg={"../public/icon/Rotate.png"}/>
+                <ButtonFileMenu Action={GizmoScaleActivate} bg={"../public/icon/Scal.png"}/>
             </div>
         </div>
     );

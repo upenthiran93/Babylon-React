@@ -18,7 +18,7 @@ export default function SceneComponent({ antialias, engineOptions, adaptToDevice
             }
             return canvas;
         });
-        const engine = new Engine(canvas, antialias, engineOptions, adaptToDeviceRatio);
+        const engine = new Engine(canvas, antialias, engineOptions, adaptToDeviceRatio, { stencil: true });
         const scene = new Scene(engine, sceneOptions);
 
 

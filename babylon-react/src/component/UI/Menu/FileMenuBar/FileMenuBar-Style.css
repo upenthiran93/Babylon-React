@@ -1,9 +1,19 @@
-#file-menu-bar{
+#file-menu-bar {
     grid-area: 1 / 1 / 2 / 21;
-
+    display: flex;
+    justify-content: space-between; /* Aligns items with space between them */
+    align-items: center; /* Aligns items vertically center */
 }
-.Toolbar{
-    display: inline-flex;
-    height: 100%;
 
+.Toolbar {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    translate: -50vw;/* Aligns items horizontally center */
+}
+
+.Create {
+    display: flex;
+    height: 100%;
+    align-items: center; /* Aligns items vertically center */
 }

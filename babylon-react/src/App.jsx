@@ -5,12 +5,14 @@ import "./App.css";
 import FileMenuBar from "./component/UI/Menu/FileMenuBar/FileMenuBar.jsx";
 import InspectorMenuBar from "./component/UI/Menu/Inspector-Menu-Bar.jsx";
 import { GizmoManager } from "@babylonjs/core/Gizmos";
+import {HighlightLayer,Color3,MeshBuilder } from "@babylonjs/core";
 
 export const SelectedObjectContext = React.createContext(null);
 
 const App = () => {
     const [isSceneReady, setIsSceneReady] = useState(false);
     const [scene, setScene] = useState(null);
+    const [highlightLayer, setHighlightLayer] = useState(null);
     const [mesh, setMesh] = useState(null);
     const [canvas, setCanvas] = useState(null);
     const [gizmoManager, setGizmoManager] = useState(null);
@@ -23,7 +25,6 @@ const App = () => {
             gizmoManager.attachToMesh(mesh);
         }
     }, [canSelect]);
-
     useEffect(() => {
         const handleCanvasClick = () => {
             if (scene && canSelectRef.current) {
@@ -36,6 +37,11 @@ const App = () => {
                 }
             }
         };
+        setHighlightLayer(new HighlightLayer("hl1", scene))
+        //reduce Higlight Layer
+
+
+
 
         if (canvas) {
             canvas.addEventListener("click", handleCanvasClick);
@@ -44,12 +50,31 @@ const App = () => {
             };
         }
     }, [canvas, scene]);
-
     useEffect(() => {
         if (gizmoManager) {
             gizmoManager.usePointerToAttachGizmos = false;
         }
     }, [gizmoManager]);
+    useEffect(() => {
+
+        if (highlightLayer)
+        {
+            highlightLayer.removeAllMeshes();
+            highlightLayer.innerGlow = false;
+            highlightLayer.blurHorizontalSize = 0.5;
+            highlightLayer.blurVerticalSize = 0.5 ;
+            highlightLayer.renderOutline = true;
+
+        }
+
+
+        if (highlightLayer && mesh)
+        {
+            highlightLayer.addMesh(mesh, new Color3(1, 0.5, 0));
+        }
+
+    }, [mesh]);
+
 
     const onSceneReady = (scene) => {
         initScreen(scene);
@@ -61,6 +86,8 @@ const App = () => {
         setCanvas(canvas);
         if (newScene) {
             setGizmoManager(new GizmoManager(newScene));
+
+
         }
     };
 
