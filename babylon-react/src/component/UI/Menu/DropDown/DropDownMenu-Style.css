@@ -1,31 +1,33 @@
 
 .DropDownMenu {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 1;
-    text-align: center;
+
+
+
 }
 
 .DropDownMenu ul {
-    text-align: center;
     position: absolute;
-    background-color: #494949;
-    justify-content: center;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    top: 70px;
+    left: 20px;
     z-index: 1;
+    min-width: 160px;
+    padding: 0; /* Reset padding */
+    margin: 0; /* Reset margin */
 }
 .DropDownMenu li {
+    list-style: none;
+    padding: 0;
+}
+li button {
+
+    cursor: pointer;
     color: #e1e1e1;
-    padding: 5px 16px;
+    background-color: rgb(58, 55, 55);
+    width: 100%;
+    height: 100%;
+    border-radius :0;
+
     text-decoration: none;
     display: block;
 }
 
-.DropDownMenu li:hover {
-    background-color: #ff8e00;
-    padding: 5px 16px;
-    text-decoration: none;
-    display: block;
-}
