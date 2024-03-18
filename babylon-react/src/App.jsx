@@ -18,6 +18,7 @@ const App = () => {
     const [gizmoManager, setGizmoManager] = useState(null);
     const [canSelect, setCanSelect] = useState(false);
     const canSelectRef = useRef(canSelect);
+    
 
     useEffect(() => {
         canSelectRef.current = canSelect;
@@ -64,6 +65,7 @@ const App = () => {
             highlightLayer.blurHorizontalSize = 0.5;
             highlightLayer.blurVerticalSize = 0.5 ;
             highlightLayer.renderOutline = true;
+        
 
         }
 
