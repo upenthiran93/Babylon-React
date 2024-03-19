@@ -5,7 +5,8 @@ import "./App.css";
 import FileMenuBar from "./component/UI/Menu/FileMenuBar/FileMenuBar.jsx";
 import InspectorMenuBar from "./component/UI/Menu/Inspector-Menu-Bar.jsx";
 import { GizmoManager } from "@babylonjs/core/Gizmos";
-import {HighlightLayer,Color3,MeshBuilder } from "@babylonjs/core";
+import {HighlightLayer, Color3, MeshBuilder, Vector3, StandardMaterial} from "@babylonjs/core";
+import {GridMaterial} from "@babylonjs/materials";
 
 export const SelectedObjectContext = React.createContext(null);
 
@@ -81,6 +82,9 @@ const App = () => {
     const onSceneReady = (scene) => {
         initScreen(scene);
         setIsSceneReady(true);
+
+       
+
     };
 
     const onSceneCreated = ({ newScene, canvas }) => {

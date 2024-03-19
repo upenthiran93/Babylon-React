@@ -4,6 +4,7 @@ import {useContext, useCallback, useState} from "react";
 
 import DropDownMenu from "../DropDown/DropDownMenu.jsx";
 import ToolBar from "./ToolBar/ToolBar.jsx";
+import CreateToolBar from "./CreateBar/CreateToolBar.jsx";
 
 
 
@@ -18,10 +19,7 @@ export default function FileMenuBar() {
     return (
         <div className="UI menu" id="file-menu-bar">
 
-            <div className={"Create"}>
-                <ButtonFileMenu Action={handleButtonClick} Text={"C"} />
-                {showDropDown && <DropDownMenu />} {/* Render dropdown based on showDropDown state */}
-            </div>
+            <CreateToolBar/>
             <ToolBar/>
         </div>
     );

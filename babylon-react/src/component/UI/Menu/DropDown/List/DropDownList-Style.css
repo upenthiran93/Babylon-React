@@ -1,0 +1,23 @@
+li{
+   list-style: none;
+   display: flex;
+    background-color: #242424;
+}
+li button{
+    display: inline-flex;
+padding: 0;
+    width: 100%;
+    border-radius: 0;
+    background-color: #242424;
+    border: none;
+    color: white;
+    align-items: center; /* Align items vertically centered */
+    text-decoration: none;
+    font-size: 16px;}
+ button:hover{
+    background-color: #3f3f3f;
+}
+
+ li button p{
+     padding-left: 10px;
+ }

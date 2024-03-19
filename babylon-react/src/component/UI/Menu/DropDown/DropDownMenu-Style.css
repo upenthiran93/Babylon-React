@@ -1,12 +1,9 @@
 
-.DropDownMenu {
 
 
-
-}
-
-.DropDownMenu ul {
+ ul {
     position: absolute;
+
     top: 70px;
     left: 20px;
     z-index: 1;
@@ -14,20 +11,5 @@
     padding: 0; /* Reset padding */
     margin: 0; /* Reset margin */
 }
-.DropDownMenu li {
-    list-style: none;
-    padding: 0;
-}
-li button {
 
-    cursor: pointer;
-    color: #e1e1e1;
-    background-color: rgb(58, 55, 55);
-    width: 100%;
-    height: 100%;
-    border-radius :0;
-
-    text-decoration: none;
-    display: block;
-}
 
