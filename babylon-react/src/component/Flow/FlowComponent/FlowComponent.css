@@ -1,0 +1,12 @@
+.react-flow {
+  grid-area: 1 / 1 /21 /12;
+
+  overflow: hidden;
+  background-color: #f5f5f5;
+  cursor: default;
+
+}
+.FlowComponent_container{
+
+  grid-area: 1 / 1 /21 /12;
+}
