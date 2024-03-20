@@ -1,37 +1,78 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Handle, Position } from 'react-flow-renderer';
 import { SelectedObjectContext } from '../../../../App.jsx';
 import { Vector3 } from '@babylonjs/core';
 
+
 function CubeNode({ data }) {
     const Context = useContext(SelectedObjectContext);
     const [position, setPosition] = useState({ x: 0, y: 0, z: 0 });
+    const [size, setSize] = useState(1);
+    const [rotation, setRotation] = useState({ x: 0, y: 0, z: 0 });
+    const [Cube, setCube] = useState(null);
+
+    useEffect(() => {
+        if (Cube) {
+            Cube.position = new Vector3(position.x, position.y, position.z);
+            Cube.scaling = new Vector3(size, size, size);
+            Cube.rotation = new Vector3(rotation.x, rotation.y, rotation.z);
+        }
+    }, [position, size, rotation, Cube]);
 
     const handlePositionChange = (axis, event) => {
-        setPosition(prevPosition => ({ ...prevPosition, [axis]: parseFloat(event.target.value) }));
+        setPosition(prevPosition => ({
+            ...prevPosition,
+            [axis]: parseFloat(event.target.value)
+        }));
+    };
+
+    const handleSizeChange = event => {
+        setSize(parseFloat(event.target.value));
+    };
+
+    const handleRotationChange = (axis, event) => {
+        setRotation(prevRotation => ({
+            ...prevRotation,
+            [axis]: parseFloat(event.target.value)
+        }));
     };
 
     const createBox = () => {
-        console.log("Cube Created in Babylon.js");
-        const size = 1; // Set the size of the cube
-        const options = { size: size }; // Options for the cube
-        const cube = Context.MeshBuilder.CreateBox('cube', options, Context.scene); // Create the cube
-        cube.position = new Vector3(position.x, position.y, position.z); // Set the position of the cube
+        if (!Cube) {
+            console.log("Creating new cube in Babylon.js");
+            const options = { size: size };
+            const newCube = Context.MeshBuilder.CreateBox('cube', options, Context.scene);
+            setCube(newCube);
+        } else {
+            console.log("Moving existing cube in Babylon.js");
+        }
     };
 
     return (
         <div className="node cube">
             <h5>Cube</h5>
             <p>Position</p>
-            <div>
+            <div className={"vector3input"}>
                 <label>x: </label>
-                <input type="text" value={0} onChange={(event) => handlePositionChange('x', event)} />
+                <input type="number" className={"nodrag"} onChange={(event) => handlePositionChange('x', event)} />
                 <label>y: </label>
-                <input type="text"  value={-5} onChange={(event) => handlePositionChange('y', event)} />
+                <input type="number" className={"nodrag"} onChange={(event) => handlePositionChange('y', event)} />
                 <label>z: </label>
-                <input type="text" value={5} onChange={(event) => handlePositionChange('z', event)} />
+                <input type="number" className={"nodrag"} onChange={(event) => handlePositionChange('z', event)} />
             </div>
-
+            <p>Size</p>
+            <div className={"vector3input"}>
+                <input type="number" className={"nodrag"} value={size} onChange={handleSizeChange} />
+            </div>
+            <p>Rotation</p>
+            <div className={"vector3input"}>
+                <label>x: </label>
+                <input type="number" className={"nodrag"} onChange={(event) => handleRotationChange('x', event)} />
+                <label>y: </label>
+                <input type="number" className={"nodrag"} onChange={(event) => handleRotationChange('y', event)} />
+                <label>z: </label>
+                <input type="number" className={"nodrag"} onChange={(event) => handleRotationChange('z', event)} />
+            </div>
             <Handle
                 type="source"
                 position={Position.Right}
