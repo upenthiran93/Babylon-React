@@ -57,7 +57,7 @@ function CubeNode({ data }) {
             <Vector3NodeUI title={"Position"} name={"position"} handleChange={handlePositionChange} />
 
 
-            <FloatNodeUi name={"size"} handleChange={handleSizeChange} />
+            <FloatNodeUi title={"size"} handleChange={handleSizeChange} />
             <Vector3NodeUI title={"Rotation"} name={"rotation"} handleChange={handleRotationChange} />
             <Handle
                 type="source"

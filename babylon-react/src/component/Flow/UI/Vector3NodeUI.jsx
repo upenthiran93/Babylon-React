@@ -3,11 +3,14 @@ import FloatNodeUi from "./FloatNodeUi.jsx";
 
 const Vector3NodeUI = ({title, handleChange }) => {
     return (
-        <div className={"vector3input"}>
+        <div className={"vector3InputNode"}>
             <h5>{title}</h5>
-            <FloatNodeUi name={` x:`} handleChange={handleChange} handleChangeAxies={"x"} />
-            <FloatNodeUi name={` y:`} handleChange={handleChange} handleChangeAxies={"y"} />
-            <FloatNodeUi name={` z:`} handleChange={handleChange} handleChangeAxies={"z"} />
+            <div className={"axies"}>
+                <FloatNodeUi name={` x:`} handleChange={handleChange} handleChangeAxies={"x"} />
+                <FloatNodeUi name={` y:`} handleChange={handleChange} handleChangeAxies={"y"} />
+                <FloatNodeUi name={` z:`} handleChange={handleChange} handleChangeAxies={"z"} />
+            </div>
+
         </div>
     );
 };

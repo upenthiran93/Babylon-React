@@ -2,7 +2,7 @@ import React from 'react';
 
 const FloatNodeUi = ({name, handleChange, handleChangeAxies="", title}) => {
     return (
-        <>
+        <div className={"FloatInputNode"}>
             {title && <h5>{title}</h5>}
             <label>{name} </label>
             <input
@@ -13,7 +13,7 @@ const FloatNodeUi = ({name, handleChange, handleChangeAxies="", title}) => {
                     (event) => handleChange(handleChangeAxies, event)
                 }
             />
-        </>
+        </div>
     );
 };
 
