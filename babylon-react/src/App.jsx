@@ -109,9 +109,11 @@ const App = () => {
             <SceneComponent antialias onSceneReady={onSceneReady} onSceneCreated={onSceneCreated} id="my-canvas" />
             <SelectedObjectContext.Provider value={bjsData}>
                 <div id="ui-container">
-                    <FileMenuBar />
-                    {isSceneReady && <InspectorMenuBar />}
-                    { isVisible&&<FlowComponent  />}
+                    <FileMenuBar/>
+                    {isSceneReady && <InspectorMenuBar/>}
+                    <div className={isVisible ? "FC" : "FC hide"}>
+                        <FlowComponent/>
+                    </div>
                 </div>
             </SelectedObjectContext.Provider>
         </>

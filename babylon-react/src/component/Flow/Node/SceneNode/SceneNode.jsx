@@ -14,18 +14,17 @@ function SceneNode ({ data }) {
     }, []);
     const handleClick = () => {
         console.log("Button clicked");
-        // Create a cube in the Babylon.js scene
-        const size = 1; // Set the size of the cube
-        const options = { size: size }; // Options for the cube
-        const cube = Context.MeshBuilder.CreateBox('cube', options, Context.scene); // Create the cube
-        cube.position = new Context.Vector3(0, 0, 0); // Set the position of the cube
+        console.log(data);
+        if (data.cubeFunction) {
+            data.cubeFunction();
+        }
     };
     return (
         <>
             <Handle type="target" position={Position.Top}  />
             <div className={"node scene"}>
                 <h3>Scene Node</h3>
-                <button onClick={handleClick}>update</button>
+
             </div>
         </>
     );

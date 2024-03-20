@@ -6,7 +6,10 @@
   cursor: default;
 
 }
-.FlowComponent_container{
+.FC{
 
   grid-area: 1 / 1 /21 /12;
+}
+.hide{
+  display: none;
 }
