@@ -1,0 +1,8 @@
+.node{
+    padding: 10px;
+    background-color: #494949;
+    border-radius:10px;
+}
+.node input{
+    width: 40px;
+}

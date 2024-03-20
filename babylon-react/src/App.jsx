@@ -102,7 +102,7 @@ const App = () => {
         setIsVisible(!isVisible);
     };
 
-    const bjsData = { mesh, gizmoManager, scene, setCanSelect,toggleVisibility };
+    const bjsData = { mesh, gizmoManager, scene, setCanSelect,toggleVisibility,MeshBuilder };
 
     return (
         <>
