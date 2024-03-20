@@ -2,6 +2,8 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Handle, Position } from 'react-flow-renderer';
 import { SelectedObjectContext } from '../../../../App.jsx';
 import { Vector3 } from '@babylonjs/core';
+import FloatNodeUi from "../../UI/FloatNodeUi.jsx";
+import Vector3NodeUI from "../../UI/Vector3NodeUI.jsx";
 
 
 function CubeNode({ data }) {
@@ -51,28 +53,12 @@ function CubeNode({ data }) {
     return (
         <div className="node cube">
             <h5>Cube</h5>
-            <p>Position</p>
-            <div className={"vector3input"}>
-                <label>x: </label>
-                <input type="number" className={"nodrag"} onChange={(event) => handlePositionChange('x', event)} />
-                <label>y: </label>
-                <input type="number" className={"nodrag"} onChange={(event) => handlePositionChange('y', event)} />
-                <label>z: </label>
-                <input type="number" className={"nodrag"} onChange={(event) => handlePositionChange('z', event)} />
-            </div>
-            <p>Size</p>
-            <div className={"vector3input"}>
-                <input type="number" className={"nodrag"} value={size} onChange={handleSizeChange} />
-            </div>
-            <p>Rotation</p>
-            <div className={"vector3input"}>
-                <label>x: </label>
-                <input type="number" className={"nodrag"} onChange={(event) => handleRotationChange('x', event)} />
-                <label>y: </label>
-                <input type="number" className={"nodrag"} onChange={(event) => handleRotationChange('y', event)} />
-                <label>z: </label>
-                <input type="number" className={"nodrag"} onChange={(event) => handleRotationChange('z', event)} />
-            </div>
+
+            <Vector3NodeUI title={"Position"} name={"position"} handleChange={handlePositionChange} />
+
+
+            <FloatNodeUi name={"size"} handleChange={handleSizeChange} />
+            <Vector3NodeUI title={"Rotation"} name={"rotation"} handleChange={handleRotationChange} />
             <Handle
                 type="source"
                 position={Position.Right}
