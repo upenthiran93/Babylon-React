@@ -15,7 +15,7 @@ const CreateToolBar = () => {
     ];
     return (
         <div className={"Create"}>
-            <ButtonFileMenu Action={null} Text={"C"}/>
+            <ButtonFileMenu Action={()=>{Context.toggleVisibility() }} Text={"C"}/>
              <DropDownMenu Options={CreateOptions}/>
         </div>
     );

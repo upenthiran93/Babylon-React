@@ -7,6 +7,7 @@ import InspectorMenuBar from "./component/UI/Menu/Inspector-Menu-Bar.jsx";
 import { GizmoManager } from "@babylonjs/core/Gizmos";
 import {HighlightLayer, Color3, MeshBuilder, Vector3, StandardMaterial} from "@babylonjs/core";
 import {GridMaterial} from "@babylonjs/materials";
+import FlowComponent from "./component/Flow/FlowComponent/FlowComponent.jsx";
 
 export const SelectedObjectContext = React.createContext(null);
 
@@ -19,7 +20,7 @@ const App = () => {
     const [gizmoManager, setGizmoManager] = useState(null);
     const [canSelect, setCanSelect] = useState(false);
     const canSelectRef = useRef(canSelect);
-    
+    const [isVisible, setIsVisible] = useState(true);
 
     useEffect(() => {
         canSelectRef.current = canSelect;
@@ -96,8 +97,12 @@ const App = () => {
 
         }
     };
+    const toggleVisibility = () => { // New function to toggle visibility
+        console .log("toggle")
+        setIsVisible(!isVisible);
+    };
 
-    const bjsData = { mesh, gizmoManager, scene, setCanSelect };
+    const bjsData = { mesh, gizmoManager, scene, setCanSelect,toggleVisibility };
 
     return (
         <>
@@ -106,6 +111,7 @@ const App = () => {
                 <div id="ui-container">
                     <FileMenuBar />
                     {isSceneReady && <InspectorMenuBar />}
+                    { isVisible&&<FlowComponent  />}
                 </div>
             </SelectedObjectContext.Provider>
         </>
