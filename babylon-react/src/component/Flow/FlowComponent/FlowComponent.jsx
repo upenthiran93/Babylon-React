@@ -7,8 +7,8 @@ import GroundNode from "../Node/GroundNode/GroundNode.jsx";
 
 const FlowComponent = () => {
     const initialNodes = [
-        { id: '1', type: 'Cube', data: { label: 'Output Node' }, position: { x: 250, y: 150 } },
-        { id: '2', type: 'Ground', data: { label: 'Output Node' }, position: { x: 550, y: 150 } },
+        { id: '1', type: 'Cube', data: { label: 'Output Node' }, position: { x: 250, y: 250 } },
+        { id: '2', type: 'Ground', data: { label: 'Output Node' }, position: { x: 250, y: 50 } },
         { id: 'SCENE', type: 'Scene', data: { label: 'Scene Node' }, position: { x: 800, y: 125 } }
     ];
 
