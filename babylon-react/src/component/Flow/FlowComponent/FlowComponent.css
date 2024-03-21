@@ -114,3 +114,21 @@ path.react-flow__edge-path:hover {
     stroke-width: 5px;
     box-shadow: 20px 20px 20px #ffffff;
 }
+
+#Cube-Button{
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    z-index: 10;
+    background-color: #ff8e00;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.15s;
+    z-index: 100;
+}

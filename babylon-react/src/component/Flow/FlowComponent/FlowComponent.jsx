@@ -4,6 +4,7 @@ import SceneNode from '../Node/SceneNode/SceneNode.jsx'; // Import SceneNode
 import CubeNode from "../Node/CudeNode/CubeNode.jsx";
 import './FlowComponent.css';
 import GroundNode from "../Node/GroundNode/GroundNode.jsx";
+let id = 0;
 
 const FlowComponent = () => {
     const initialNodes = [
@@ -31,6 +32,18 @@ const FlowComponent = () => {
     );
 
     const nodeTypes = useMemo(() => ({ Scene: SceneNode, Cube: CubeNode ,Ground:GroundNode}), []);
+    const getId = () => `dndnode_${id++}`;
+
+    const addCubeNode = () => {
+        const newNode = {
+            id: getId(),
+            type: 'Cube',
+            position: { x: 250, y: 250 },
+            data: { label: 'Cube node' },
+        };
+
+        setNodes((ns) => ns.concat(newNode));
+    };
 
     return (
         <ReactFlow
@@ -42,9 +55,11 @@ const FlowComponent = () => {
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
         >
-            <Controls />
-            <MiniMap />
-            <Background variant="dots" gap={12} size={1} />
+            <Controls/>
+            <MiniMap/>
+            <Background variant="dots" gap={12} size={1}/>
+
+            <button id={"Cube-Button"} onClick={addCubeNode}> Cube</button>
         </ReactFlow>
     );
 };
