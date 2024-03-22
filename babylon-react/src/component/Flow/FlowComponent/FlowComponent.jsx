@@ -4,6 +4,7 @@ import SceneNode from '../Node/SceneNode/SceneNode.jsx'; // Import SceneNode
 import CubeNode from "../Node/CudeNode/CubeNode.jsx";
 import './FlowComponent.css';
 import GroundNode from "../Node/GroundNode/GroundNode.jsx";
+import FlowToolMenu from "./FLowToolMenu/FlowToolMenu.jsx";
 let id = 0;
 
 const FlowComponent = () => {
@@ -55,10 +56,21 @@ const FlowComponent = () => {
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
         >
-            <Controls/>
-            <MiniMap/>
-            <Background variant="dots" gap={12} size={1}/>
 
+                <Controls      />
+                <MiniMap
+                    nodeColor={(n) => {
+                        if (n.type === 'Scene') return 'blue';
+                        return 'red';
+
+                    }
+                }
+                    // style={{ position: 'absolute', top: 0, right: 50 }}
+
+                />
+
+            <Background variant="dots" gap={25} size={2}/>
+           < FlowToolMenu/>
             <button id={"Cube-Button"} onClick={addCubeNode}> Cube</button>
         </ReactFlow>
     );

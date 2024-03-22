@@ -6,7 +6,7 @@
 }
 
 .FC {
-    grid-area: 1 / 1 /21 /12;
+    grid-area: 2 / 1 /21 /12;
 }
 
 .hide {
@@ -130,5 +130,11 @@ path.react-flow__edge-path:hover {
     justify-content: center;
     cursor: pointer;
     transition: background-color 0.15s;
-    z-index: 100;
+
+}
+.react-flow__controls {
+
+     position: absolute;
+    left: 60px !important;
+
 }
