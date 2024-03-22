@@ -1,15 +1,18 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import ReactFlow, { MiniMap, Controls, Background, addEdge, applyNodeChanges, applyEdgeChanges } from 'react-flow-renderer';
-import SceneNode from '../Node/SceneNode/SceneNode.jsx'; // Import SceneNode
-import CubeNode from "../Node/CudeNode/CubeNode.jsx";
+import { AddCubeNode, CubeNode } from "../Node/CudeNode/Cube.jsx";
+import { AddGroundNode, GroundNode } from "../Node/GroundNode/Ground.jsx";
+
 import './FlowComponent.css';
-import GroundNode from "../Node/GroundNode/GroundNode.jsx";
+
 import FlowToolMenu from "./FLowToolMenu/FlowToolMenu.jsx";
+import SceneNode from "../Node/SceneNode/SceneNode.jsx";
+
 let id = 0;
 
 const FlowComponent = () => {
     const initialNodes = [
-        { id: '1', type: 'Cube', data: { label: 'Output Node' }, position: { x: 250, y: 250 } },
+
         { id: '2', type: 'Ground', data: { label: 'Output Node' }, position: { x: 250, y: 50 } },
         { id: 'SCENE', type: 'Scene', data: { label: 'Scene Node' }, position: { x: 800, y: 125 } }
     ];
@@ -35,43 +38,32 @@ const FlowComponent = () => {
     const nodeTypes = useMemo(() => ({ Scene: SceneNode, Cube: CubeNode ,Ground:GroundNode}), []);
     const getId = () => `dndnode_${id++}`;
 
-    const addCubeNode = () => {
-        const newNode = {
-            id: getId(),
-            type: 'Cube',
-            position: { x: 250, y: 250 },
-            data: { label: 'Cube node' },
-        };
-
-        setNodes((ns) => ns.concat(newNode));
-    };
+    const ListOfAddNode = [{text:"cube", action:()=>{AddCubeNode(getId, setNodes)}},{text:"Ground", action:()=>{AddGroundNode(getId, setNodes)}}];
 
     return (
         <ReactFlow
             nodes={nodes}
             edges={edges}
-
             nodeTypes={nodeTypes}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
         >
 
-                <Controls      />
-                <MiniMap
-                    nodeColor={(n) => {
-                        if (n.type === 'Scene') return 'blue';
-                        return 'red';
-
-                    }
+            <Controls/>
+            <MiniMap
+                nodeColor={(n) => {
+                    if (n.type === 'Scene') return 'blue';
+                    return 'red';
                 }
-                    // style={{ position: 'absolute', top: 0, right: 50 }}
+                }
 
-                />
+            />
 
             <Background variant="dots" gap={25} size={2}/>
-           < FlowToolMenu/>
-            <button id={"Cube-Button"} onClick={addCubeNode}> Cube</button>
+            < FlowToolMenu Prop={ListOfAddNode}/>
+            <button id={"Cube-Button"} onClick={() => AddCubeNode(getId, setNodes)}> Cube</button>
+            <button id={"Ground-Button"} className={"NoodeToolButton"} onClick={() => AddGroundNode(getId, setNodes)}> Ground</button>
         </ReactFlow>
     );
 };

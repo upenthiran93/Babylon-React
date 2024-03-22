@@ -1,4 +1,5 @@
 .flow-tool-menu{
+    z-index: 21;
     position: absolute;
     width: 50px;
     height: 100%;
