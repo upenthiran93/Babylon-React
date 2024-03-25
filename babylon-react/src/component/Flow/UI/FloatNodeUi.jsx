@@ -1,7 +1,7 @@
 import React from 'react';
 
 const FloatNodeUi = ({name, handleChange, handleChangeAxies="", title, initValue=0}) => {
-    console.log("FloatNodeUi",  initValue);
+
     return (
         <div className={"FloatInputNode"}>
             {title && <h5>{title}</h5>}

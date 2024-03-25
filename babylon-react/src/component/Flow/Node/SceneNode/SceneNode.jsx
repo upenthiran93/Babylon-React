@@ -13,8 +13,7 @@ function SceneNode ({ data }) {
         console.log(evt.target.value);
     }, []);
     const handleClick = () => {
-        console.log("Button clicked");
-        console.log(data);
+
         if (data.cubeFunction) {
             data.cubeFunction();
         }
@@ -23,6 +22,7 @@ function SceneNode ({ data }) {
         <>
             <Handle type="target" position={Position.Top}  />
             <div className={"node scene"}>
+
                 <h3>Scene Node</h3>
 
             </div>

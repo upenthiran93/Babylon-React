@@ -1,12 +1,12 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { Handle, Position } from 'react-flow-renderer';
-import { SelectedObjectContext } from '../../../../App.jsx';
-import { Vector3 } from '@babylonjs/core';
+import React, {useContext, useEffect, useState} from 'react';
+import {Handle, Position} from 'react-flow-renderer';
+import {SelectedObjectContext} from '../../../../App.jsx';
+import {Vector3} from '@babylonjs/core';
 import FloatNodeUi from "../../UI/FloatNodeUi.jsx";
 import Vector3NodeUI from "../../UI/Vector3NodeUI.jsx";
 
 function GroundNode({ data }) {
-    console.log("GroundNode", data);
+
     const Context = useContext(SelectedObjectContext);
     const [position, setPosition] = useState(data.position||{ x: 0, y: 0, z: 0 });
     const [size, setSize] = useState(data.size||{ width: 1, height: 1 });
@@ -52,6 +52,17 @@ function GroundNode({ data }) {
             console.log("Moving existing ground in Babylon.js");
         }
     };
+
+  // Add clearMesh function to data
+        data.clearMesh = () => {
+            console.log("Clearing ground mesh");
+            if (ground) {
+                console.log("Disposing ground mesh");
+                ground.dispose();
+                setGround(null);
+            }
+        };
+
 
     return (
         <div className="node ground">

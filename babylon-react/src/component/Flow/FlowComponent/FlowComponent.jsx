@@ -11,15 +11,13 @@ let id = 0;
 const FlowComponent = () => {
     const initialNodes = [
 
-        { id: '2', type: 'Ground', data: { label: 'Output Node',position :{ x: 0, y: 0, z: 0 },size:{ width: 4, height: 1 } ,rotation:{ x: 0, y: 0, z: 0 } }, position: { x: 250, y: 50 } },
+        { id: '2', type: 'Ground', data: { label: 'Output Node',position :{ x: 0, y: 0, z: 0 },size:{ width: 4, height: 1 } ,rotation:{ x: 0, y: 0, z: 0 }  }, position: { x: 250, y: 50 } },
         { id: 'SCENE', type: 'Scene', data: { label: 'Scene Node' }, position: { x: 800, y: 125 } }
     ];
 
     const initialEdges = [];
-
     const [nodes, setNodes] = useState(initialNodes);
     const [edges, setEdges] = useState(initialEdges);
-
     const onNodesChange = useCallback(changes => setNodes(nds => applyNodeChanges(changes, nds)), []);
     const onEdgesChange = useCallback(changes => setEdges(eds => applyEdgeChanges(changes, eds)), []);
     const onConnect = useCallback(
@@ -32,7 +30,22 @@ const FlowComponent = () => {
         },
         [setEdges]
     );
+    const onEdgeDelete = useCallback((edge)=>{
+ ;
+        if(edge[0].target === "SCENE"){
 
+            const sourceNode = nodes.find(node => node.id === edge[0].source);
+
+            if (sourceNode && sourceNode.data.clearMesh) {
+                sourceNode.data.clearMesh();
+            }
+        }
+
+    },[])
+
+    const DeletedMeshWhenRemovedFromScene = useCallback((edge)=>{
+
+    }, [nodes]);
     const nodeTypes = useMemo(() => ({ Scene: SceneNode, Cube: CubeNode ,Ground:GroundNode}), []);
     const getId = () => `dndnode_${id++}`;
 
@@ -46,6 +59,7 @@ const FlowComponent = () => {
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
+           onEdgesDelete={onEdgeDelete}
         >
 
             <Controls/>
