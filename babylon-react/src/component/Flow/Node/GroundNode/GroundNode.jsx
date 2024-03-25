@@ -6,10 +6,11 @@ import FloatNodeUi from "../../UI/FloatNodeUi.jsx";
 import Vector3NodeUI from "../../UI/Vector3NodeUI.jsx";
 
 function GroundNode({ data }) {
+    console.log("GroundNode", data);
     const Context = useContext(SelectedObjectContext);
-    const [position, setPosition] = useState({ x: 0, y: 0, z: 0 });
-    const [size, setSize] = useState({ width: 1, height: 1 });
-    const [rotation, setRotation] = useState({ x: 0, y: 0, z: 0 });
+    const [position, setPosition] = useState(data.position||{ x: 0, y: 0, z: 0 });
+    const [size, setSize] = useState(data.size||{ width: 1, height: 1 });
+    const [rotation, setRotation] = useState(data.rotation||{ x: 0, y: 0, z: 0 });
     const [ground, setGround] = useState(null);
 
     useEffect(() => {
@@ -55,9 +56,9 @@ function GroundNode({ data }) {
     return (
         <div className="node ground">
             <h5>Ground</h5>
-            <Vector3NodeUI title={"Position"} name={"position"} handleChange={handlePositionChange} />
-            <FloatNodeUi title={"Width"} handleChange={(event) => handleSizeChange('width', event)} />
-            <FloatNodeUi title={"Height"} handleChange={(event) => handleSizeChange('height', event)} />
+            <Vector3NodeUI title={"Position"} name={"position"} handleChange={handlePositionChange} intiValue={position} />
+            <FloatNodeUi title={"Width"} handleChange={(event) => handleSizeChange('width', event)} initValue={size.width} />
+            <FloatNodeUi title={"Height"} handleChange={(event) => handleSizeChange('height', event)} initValue={size.height} />
             <Vector3NodeUI title={"Rotation"} name={"rotation"} handleChange={handleRotationChange} />
             <Handle
                 type="source"

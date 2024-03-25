@@ -2,9 +2,7 @@ import React, { useCallback, useMemo, useState } from 'react';
 import ReactFlow, { MiniMap, Controls, Background, addEdge, applyNodeChanges, applyEdgeChanges } from 'react-flow-renderer';
 import { AddCubeNode, CubeNode } from "../Node/CudeNode/Cube.jsx";
 import { AddGroundNode, GroundNode } from "../Node/GroundNode/Ground.jsx";
-
 import './FlowComponent.css';
-
 import FlowToolMenu from "./FLowToolMenu/FlowToolMenu.jsx";
 import SceneNode from "../Node/SceneNode/SceneNode.jsx";
 
@@ -13,7 +11,7 @@ let id = 0;
 const FlowComponent = () => {
     const initialNodes = [
 
-        { id: '2', type: 'Ground', data: { label: 'Output Node' }, position: { x: 250, y: 50 } },
+        { id: '2', type: 'Ground', data: { label: 'Output Node',position :{ x: 0, y: 0, z: 0 },size:{ width: 4, height: 1 } ,rotation:{ x: 0, y: 0, z: 0 } }, position: { x: 250, y: 50 } },
         { id: 'SCENE', type: 'Scene', data: { label: 'Scene Node' }, position: { x: 800, y: 125 } }
     ];
 

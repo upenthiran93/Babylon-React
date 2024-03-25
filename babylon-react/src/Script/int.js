@@ -32,17 +32,7 @@ export function initScreen(scene) {
 
 
     const shadowGenerator = new ShadowGenerator(1024, light);
-    // shadowGenerator.addShadowCaster(box);
-    // box.position.y = 0;
 
-    const ground = MeshBuilder.CreateGround("ground", { width: 6, height: 6 }, scene);
-    ground.scaling = new Vector3(10, 10, 10);
-    ground.position.y = -1;
-    ground.receiveShadows = true;
-
-    // Ensure the scene reference is accessible here
-
-    // Return the scene object if necessary
     return scene;
 }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 
-const FloatNodeUi = ({name, handleChange, handleChangeAxies="", title}) => {
+const FloatNodeUi = ({name, handleChange, handleChangeAxies="", title, initValue=0}) => {
+    console.log("FloatNodeUi",  initValue);
     return (
         <div className={"FloatInputNode"}>
             {title && <h5>{title}</h5>}
@@ -8,6 +9,7 @@ const FloatNodeUi = ({name, handleChange, handleChangeAxies="", title}) => {
             <input
                 type="number"
                 className={"nodrag"}
+                defaultValue={initValue}
                 onChange={handleChangeAxies === "" ?
                     (event) => handleChange(event) :
                     (event) => handleChange(handleChangeAxies, event)
