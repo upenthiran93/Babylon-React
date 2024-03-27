@@ -5,7 +5,15 @@ import "./App.css";
 import FileMenuBar from "./component/UI/Menu/FileMenuBar/FileMenuBar.jsx";
 import InspectorMenuBar from "./component/UI/Menu/Inspector-Menu-Bar.jsx";
 import { GizmoManager } from "@babylonjs/core/Gizmos";
-import {HighlightLayer, Color3, MeshBuilder, Vector3, StandardMaterial,ShadowGenerator} from "@babylonjs/core";
+import {
+    HighlightLayer,
+    Color3,
+    MeshBuilder,
+    Vector3,
+    StandardMaterial,
+    ShadowGenerator,
+    DirectionalLight,
+} from "@babylonjs/core";
 import {GridMaterial} from "@babylonjs/materials";
 import FlowComponent from "./component/Flow/FlowComponent/FlowComponent.jsx";
 
@@ -102,7 +110,15 @@ const App = () => {
         setIsVisible(!isVisible);
     };
 
-    const bjsData = { mesh, gizmoManager, scene, setCanSelect,toggleVisibility,MeshBuilder,ShadowGenerator };
+    const bjsData = {
+        mesh,
+        gizmoManager,
+        scene,
+        setCanSelect,
+        toggleVisibility,
+        MeshBuilder,
+        DirectionalLight,
+        ShadowGenerator };
 
     return (
         <>
