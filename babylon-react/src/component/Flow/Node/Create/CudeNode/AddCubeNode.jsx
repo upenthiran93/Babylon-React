@@ -8,7 +8,7 @@ const AddCubeNode = (getId, setNodes, position = {x:250, y:550}) => {
             position: { x: 1, y: 0, z: 2 },
             rotation: { x: 0, y: 0, z: 0 },
             size: 1,
-            scale: { x: 1, y: 1, z: 1 },
+            Scale: { x: 1, y: 1, z: 1 },
         },
     };
 

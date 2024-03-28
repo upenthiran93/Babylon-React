@@ -8,7 +8,8 @@ function GroundNode({ data }) {
     data.mesh = Mesh;
 
     const createGround = (position, rotation, scale, size) => {
-        const options = { width: size.width, height: size.height };
+        console.log("Creating Ground mesh",data);
+        const options = { width: 1, height: 1 };
         setMesh( Context.MeshBuilder.CreateGround('ground', options, Context.scene));
     };
 

@@ -10,6 +10,7 @@ const DirectionLightNode = ({data}) => {
     const [Direction, setDirection] = useState({x: -1, y: -1, z: 0});
     data.mesh = Dlight;
 
+
     useEffect(() => {
         if (Dlight) {
             Dlight.direction = new Vector3(Direction.x, Direction.y, Direction.z);
