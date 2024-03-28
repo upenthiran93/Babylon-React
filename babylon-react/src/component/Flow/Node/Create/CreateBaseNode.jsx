@@ -8,7 +8,7 @@ const CreateBaseNode = ({data, action,title}) => {
     const [Title, setTitle] = useState(title||"Mesh");
     const [position, setPosition] = useState(data.position);
     const [rotation, setRotation] = useState(data.rotation);
-    const [Scale, setScale] = useState(data.Scale);
+    const [scale, setScale] = useState(data.scale);
     const [Size, setSize] = useState(data.Size);
     const [mesh, setMesh] = useState(null);
     useEffect(() => {
@@ -19,11 +19,11 @@ const CreateBaseNode = ({data, action,title}) => {
         if (  data.mesh ) {
 
             data.mesh.position =position? new Vector3(position.x, position.y, position.z) : new Vector3(0, 0, 0);
-            data.mesh.scaling =Scale? new Vector3(Scale.x, Scale.y, Scale.z): new Vector3(1, 1, 1);
+            data.mesh.scaling =scale? new Vector3(scale.x, scale.y, scale.z): new Vector3(1, 1, 1);
             data.mesh.rotation = rotation? new Vector3(rotation.x, rotation.y, rotation.z): new Vector3(0, 0, 0);
 
         }
-    }, [position, Scale, rotation, mesh]);
+    }, [position, scale, rotation, mesh]);
 
     const handlePositionChange = (axis, event) => {
         setPosition(prevPosition => ({
@@ -49,7 +49,7 @@ const CreateBaseNode = ({data, action,title}) => {
     const createMesh = useCallback(() => {
         if (!mesh) {
             console.log("Creating new mesh with",data);
-         setMesh(   action(position , rotation, Scale, Size ));
+         setMesh(   action(position , rotation, scale, Size ));
         } else {
             console.log("Moving existing mesh in Babylon.js");
         }
@@ -62,7 +62,7 @@ const CreateBaseNode = ({data, action,title}) => {
             <div className="node cube">
                 <h5>{Title}</h5>
                 {position && <Vector3NodeUI title={"Position"} name={"position"} handleChange={handlePositionChange} intiValue={position} />}
-                {Scale && <Vector3NodeUI title={"Scale"} name={"Scale"} handleChange={handleSizeChange} initValue={Scale} />}
+                {scale && <Vector3NodeUI title={"Scale"} name={"Scale"} handleChange={handleSizeChange} initValue={scale} />}
                 {rotation && <Vector3NodeUI title={"Rotation"} name={"rotation"} handleChange={handleRotationChange} intiValue={rotation} />}
                 <Handle
                     type="source"
