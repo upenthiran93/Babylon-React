@@ -10,11 +10,11 @@ import {
     Vector3,
     SceneLoader
 } from "@babylonjs/core";
-import  "@babylonjs/loaders/glTF";
-import "@babylonjs/loaders/OBJ";
-import {GLTFFileLoader} from "@babylonjs/loaders";
-const gltfLoader = new GLTFFileLoader();
-SceneLoader.RegisterPlugin(gltfLoader);
+// import  "@babylonjs/loaders/glTF";
+// import "@babylonjs/loaders/OBJ";
+// import {GLTFFileLoader} from "@babylonjs/loaders";
+// const gltfLoader = new GLTFFileLoader();
+// SceneLoader.RegisterPlugin(gltfLoader);
 //
 //this
 // some changes
@@ -42,13 +42,13 @@ export function initScreen(scene) {
     console.log(  SceneLoader.IsPluginForExtensionAvailable(".gltf"));
 
 
-    SceneLoader.ImportMesh("","./", "Astronaut.glb",scene, function (meshes) {
-        console.log(meshes);
-        box = meshes[0];
-        box.position = new Vector3(0, 0, 0);
-        box.scaling = new Vector3(1, 1, 1);
-        box.rotation = new Vector3(0, Math.PI, 0);
-    });
+    // SceneLoader.ImportMesh("","./", "Astronaut.glb",scene, function (meshes) {
+    //     console.log(meshes);
+    //     box = meshes[0];
+    //     box.position = new Vector3(0, 0, 0);
+    //     box.scaling = new Vector3(1, 1, 1);
+    //     box.rotation = new Vector3(0, Math.PI, 0);
+    // });
 
     // const shadowGenerator = new ShadowGenerator(1024, light);
 

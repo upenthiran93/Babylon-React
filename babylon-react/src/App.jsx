@@ -13,8 +13,14 @@ import {
     StandardMaterial,
     ShadowGenerator,
     DirectionalLight,
+    SceneLoader,
 } from "@babylonjs/core";
-import {GridMaterial} from "@babylonjs/materials";
+
+import  "@babylonjs/loaders/glTF";
+import "@babylonjs/loaders/OBJ";
+import {GLTFFileLoader} from "@babylonjs/loaders";
+const gltfLoader = new GLTFFileLoader();
+SceneLoader.RegisterPlugin(gltfLoader);
 import FlowComponent from "./component/Flow/FlowComponent/FlowComponent.jsx";
 
 export const SelectedObjectContext = React.createContext(null);
@@ -118,7 +124,9 @@ const App = () => {
         toggleVisibility,
         MeshBuilder,
         DirectionalLight,
-        ShadowGenerator };
+        ShadowGenerator,
+        SceneLoader,
+    };
 
     return (
         <>

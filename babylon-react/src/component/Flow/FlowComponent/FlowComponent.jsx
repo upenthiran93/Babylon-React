@@ -9,11 +9,13 @@ import ReactFlow, {
 } from 'react-flow-renderer';
 import {AddCubeNode, CubeNode} from "../Node/Create/CudeNode/Cube.jsx";
 import {AddGroundNode, GroundNode} from "../Node/Create/GroundNode/Ground.jsx";
+import {AddGltfNode,GltfNode} from "../Node/Create/GltfNode/GltfNode.jsx";
 import {DirectionLightNode, AddDirectionLightNode} from "../Node/Create/DirectionLight/DirectionLight.jsx";
 import './FlowComponent.css';
 import FlowToolMenu from "./FLowToolMenu/FlowToolMenu.jsx";
 import SceneNode from "../Node/SceneNode/SceneNode.jsx";
 import {SelectedObjectContext} from "../../../App.jsx";
+
 
 let id = 0;
 
@@ -70,7 +72,7 @@ console.log("called onEdgeDelete",edge,nodes);
         }
 
     }, [nodes])
-    const nodeTypes = useMemo(() => ({Scene: SceneNode, Cube: CubeNode, Ground: GroundNode, DirectionLight: DirectionLightNode }), []);
+    const nodeTypes = useMemo(() => ({Scene: SceneNode, Cube: CubeNode, Ground: GroundNode, DirectionLight: DirectionLightNode,Gltf:GltfNode }), []);
     const getId = () => `dndnode_${id++}`;
 
     const ListOfAddNode = [{
@@ -83,8 +85,12 @@ console.log("called onEdgeDelete",edge,nodes);
         }
     }, { text: "Direction Light", action: () => {
             AddDirectionLightNode(getId, setNodes)
+        }},{
+        text: "Gltf", action: () => {
+            AddGltfNode(getId, setNodes)
         }
-    }];
+    }
+    ];
 
     return (
         <ReactFlow
