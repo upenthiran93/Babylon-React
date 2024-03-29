@@ -7,10 +7,10 @@ import ReactFlow, {
     applyNodeChanges,
     applyEdgeChanges
 } from 'react-flow-renderer';
-import {AddCubeNode, CubeNode} from "../Node/Create/CudeNode/Cube.jsx";
-import {AddGroundNode, GroundNode} from "../Node/Create/GroundNode/Ground.jsx";
+import {AddCubeNode, CubeNode} from "../Node/Create/CudeNode/CubeNode.jsx";
+import {AddGroundNode, GroundNode} from "../Node/Create/GroundNode/GroundNode.jsx";
 import {AddGltfNode,GltfNode} from "../Node/Create/GltfNode/GltfNode.jsx";
-import {DirectionLightNode, AddDirectionLightNode} from "../Node/Create/DirectionLight/DirectionLight.jsx";
+import {DirectionLightNode, AddDirectionLightNode} from "../Node/Create/DirectionLight/DirectionLightNode.jsx";
 import './FlowComponent.css';
 import FlowToolMenu from "./FLowToolMenu/FlowToolMenu.jsx";
 import SceneNode from "../Node/SceneNode/SceneNode.jsx";
