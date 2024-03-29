@@ -136,3 +136,7 @@ button {
     left: 60px !important;
 
 }
+
+.node .text-input{
+    width: 100%;
+}
