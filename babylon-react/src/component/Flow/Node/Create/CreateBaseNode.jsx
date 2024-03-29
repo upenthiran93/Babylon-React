@@ -17,7 +17,7 @@ const CreateBaseNode = ({data, action,title}) => {
 
     useEffect(() => {
         if (  data.mesh ) {
-
+// console.log("Updating mesh in Babylon.js",data);
             data.mesh.position =position? new Vector3(position.x, position.y, position.z) : new Vector3(0, 0, 0);
             data.mesh.scaling =scale? new Vector3(scale.x, scale.y, scale.z): new Vector3(1, 1, 1);
             data.mesh.rotation = rotation? new Vector3(rotation.x, rotation.y, rotation.z): new Vector3(0, 0, 0);

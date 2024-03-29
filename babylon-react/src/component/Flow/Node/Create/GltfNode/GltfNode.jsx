@@ -1,17 +1,24 @@
 import {SelectedObjectContext} from "../../../../../App.jsx";
 import {useContext, useState} from "react";
-import {Vector3} from "@babylonjs/core";
+
 import CreateBaseNode from "../CreateBaseNode.jsx";
+import {Vector3} from "@babylonjs/core";
 
 const GltfNode = ({ data }) => {
     const Context = useContext(SelectedObjectContext);
     const [Mesh, setMesh] = useState(null);
     data.mesh = Mesh;
     const CreateGltf = (position , rotation, Scale, Size) => {
-      Context.SceneLoader.ImportMesh("", "./", "Astronaut.glb", Context.scene, function (meshes) {
-            setMesh(meshes);
-        })
+        console.log("Start Creating Gltf mesh");
+   const newMesh =   Context.SceneLoader.ImportMeshAsync("", "./", "Astronaut.glb", Context.scene, )
+        .then((result) => {
+            const mesh = result.meshes[0];
+            mesh.position = new Vector3(position.x, position.y, position.z);
+            mesh.rotation = new Vector3(rotation.x, rotation.y, rotation.z);
+            mesh.scaling = new Vector3(Scale.x, Scale.y, Scale.z);
+            setMesh(result.meshes[0]);
 
+        });
 
     };
 

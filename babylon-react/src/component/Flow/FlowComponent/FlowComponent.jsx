@@ -43,12 +43,7 @@ const FlowComponent = () => {
     const onNodesChange = useCallback(changes => setNodes(nds => applyNodeChanges(changes, nds)), []);
     const onEdgesChange = useCallback(changes => setEdges(eds => applyEdgeChanges(changes, eds)), []);
 
-    useEffect(() => {
-        if (Context.scene){
-            console.log("nodes", Context.scene.lights);
-        }
 
-    }, [nodes]);
 
 
     const onConnect = useCallback((connection) => {
