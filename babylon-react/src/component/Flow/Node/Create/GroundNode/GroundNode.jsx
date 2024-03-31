@@ -1,32 +1,41 @@
-import React, {useContext, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import {SelectedObjectContext} from '../../../../../App.jsx';
 import CreateBaseNode from "../CreateBaseNode.jsx";
 
 function GroundNode({data}) {
     const Context = useContext(SelectedObjectContext);
-    const Mesh = useRef(null);
-    data.mesh = Mesh.current;
+    const [Mesh,setMesh] = useState(null);
+    data.mesh = Mesh;
 
+    useEffect(() => {
+        if (Mesh) {
+            Context.meshList.current.push(Mesh);
+        }else {
+
+
+        }
+        console.log(" Ground mesh changed ", Context.meshList.current);
+
+    }, [Mesh]);
     const createGround = (position, rotation, scale, size) => {
 
         const options = {width: 1, height: 1};
-        Mesh.current = (Context.MeshBuilder.CreateGround('ground', options, Context.scene));
-        Context.meshList.current.push(Mesh.current);
-        console.log("Creating Ground mesh", Context.meshList.current);
+        setMesh(Context.MeshBuilder.CreateGround('ground', options, Context.scene));
+
 
 
     };
 
     data.clearMesh = () => {
         console.log("Clearing Ground mesh");
-        if (Mesh.current) {
-            if (Context.meshList.current.includes(Mesh.current)) {
+        if (Mesh) {
+            if (Context.meshList.current.includes(Mesh)) {
                 console.log("Removing from mesh list");
-          Context.meshList.current = Context.meshList.current.filter(mesh => mesh !== Mesh.current);
+          Context.meshList.current = Context.meshList.current.filter(mesh => mesh !== Mesh);
             }
-            console.log("Disposing ground mesh", Context.meshList.current);
-            Mesh.current.dispose();
-            Mesh.current = null;
+
+            Mesh.dispose();
+            setMesh( null);
         }
     };
 

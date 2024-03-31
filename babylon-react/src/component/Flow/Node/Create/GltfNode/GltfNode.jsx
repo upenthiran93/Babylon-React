@@ -8,7 +8,7 @@ import TextInputNode from "../../../UI/TextInputNode.jsx";
 const GltfNode = ({data}) => {
     const Context = useContext(SelectedObjectContext);
     const Meshes = useRef([]);
-    const Mesh = useRef(null);
+    const [Mesh,setMesh] = useState(null);
     const initValue = "./Astronaut.glb";
     const [Path, setPath] = useState(initValue);
     data.mesh = Mesh;
@@ -21,8 +21,8 @@ const GltfNode = ({data}) => {
         console.log("Clearing Gltf mesh");
         if (Mesh) {
             console.log("Disposing Gltf mesh");
-            Mesh.current.dispose();
-            Mesh.current = null;
+            Mesh.dispose();
+            setMesh(null);
         }
         console.log("Disposing Gltf mesh", Context.meshList.current);
     }
@@ -41,7 +41,7 @@ const GltfNode = ({data}) => {
                 mesh.position = new Vector3(position.x, position.y, position.z);
                 mesh.rotation = new Vector3(rotation.x, rotation.y, rotation.z);
                 mesh.scaling = new Vector3(Scale.x, Scale.y, Scale.z);
-                Mesh.current = (result.meshes[0]);
+                setMesh (result.meshes[0]);
                 Meshes.current = (result.meshes);
                 Meshes.current.forEach(mesh => Context.meshList.current.push(mesh));
 
