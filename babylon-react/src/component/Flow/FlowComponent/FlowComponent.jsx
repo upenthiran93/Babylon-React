@@ -42,10 +42,6 @@ const FlowComponent = () => {
 
     const onNodesChange = useCallback(changes => setNodes(nds => applyNodeChanges(changes, nds)), []);
     const onEdgesChange = useCallback(changes => setEdges(eds => applyEdgeChanges(changes, eds)), []);
-
-
-
-
     const onConnect = useCallback((connection) => {
 
             if (connection.target === '2') { // Assuming '2' is the id of your SceneNode
@@ -86,6 +82,7 @@ console.log("called onEdgeDelete",edge,nodes);
         }
     }
     ];
+ // Dependency array
 
     return (
         <ReactFlow

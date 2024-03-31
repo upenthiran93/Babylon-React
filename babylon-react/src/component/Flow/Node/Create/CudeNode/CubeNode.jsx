@@ -1,4 +1,4 @@
-import React, {useContext, useState,} from 'react';
+import React, {useContext, useRef, useState,} from 'react';
 import { SelectedObjectContext } from '../../../../../App.jsx';
 
 import CreateBaseNode from "../CreateBaseNode.jsx";
@@ -6,7 +6,7 @@ import {Vector3} from "@babylonjs/core";
 
 function CubeNode({ data }) {
     const Context = useContext(SelectedObjectContext);
-    const [Mesh, setMesh] = useState(null);
+    const Mesh = useRef(null);
     data.mesh = Mesh;
 
 
@@ -15,7 +15,9 @@ function CubeNode({ data }) {
         newCube.position = new Vector3(position.x, position.y, position.z);
         newCube.rotation = new Vector3(rotation.x, rotation.y, rotation.z);
         newCube.scaling = new Vector3(Scale.x, Scale.y, Scale.z);
-        setMesh(newCube);
+       Mesh.current = newCube;
+        Context.meshList.current.push(Mesh.current);
+        console.log("Creating Cube mesh", Context.meshList.current);
 
     };
 
@@ -24,8 +26,14 @@ function CubeNode({ data }) {
         console.log("Clearing Cube mesh");
         if (Mesh) {
             console.log("Disposing ground mesh");
-            Mesh.dispose();
-            setMesh(null);
+
+            if (Context.meshList.current.includes(Mesh.current)) {
+                console.log("Removing from mesh list");
+                Context.meshList.current = Context.meshList.current.filter(mesh => mesh !== Mesh.current);
+                console.log("Disposing ground mesh", Context.meshList.current);
+            }
+            Mesh.current.dispose();
+           Mesh.current = null;
         }
     };
 

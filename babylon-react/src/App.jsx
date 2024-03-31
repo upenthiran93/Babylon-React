@@ -9,8 +9,6 @@ import {
     HighlightLayer,
     Color3,
     MeshBuilder,
-    Vector3,
-    StandardMaterial,
     ShadowGenerator,
     DirectionalLight,
     SceneLoader,
@@ -30,11 +28,13 @@ const App = () => {
     const [scene, setScene] = useState(null);
     const [highlightLayer, setHighlightLayer] = useState(null);
     const [mesh, setMesh] = useState(null);
+    const meshList = useRef([]);
     const [canvas, setCanvas] = useState(null);
     const [gizmoManager, setGizmoManager] = useState(null);
     const [canSelect, setCanSelect] = useState(false);
     const canSelectRef = useRef(canSelect);
     const [isVisible, setIsVisible] = useState(true);
+
 
     useEffect(() => {
         canSelectRef.current = canSelect;
@@ -92,6 +92,10 @@ const App = () => {
         }
 
     }, [mesh]);
+    useEffect(() => {
+        console.log("meshList", meshList);
+
+    }, [meshList]);
 
 
     const onSceneReady = (scene) => {
@@ -126,6 +130,8 @@ const App = () => {
         DirectionalLight,
         ShadowGenerator,
         SceneLoader,
+        meshList,
+        AllShadowGenerators: [],
     };
 
     return (

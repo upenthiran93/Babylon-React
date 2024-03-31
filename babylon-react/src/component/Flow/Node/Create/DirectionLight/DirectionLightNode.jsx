@@ -20,7 +20,7 @@ const DirectionLightNode = ({data}) => {
 
     const createDirectionLight = (position , rotation, Scale, Size) => {
         const Dlight =new Context.DirectionalLight('light',new Vector3(Direction.x,Direction.y,Direction.z ), Context.scene);
-
+        Context.AllShadowGenerators.push(new Context.ShadowGenerator(1024, Dlight));
         Dlight.intensity = 1;
         setDlight(Dlight);
     };

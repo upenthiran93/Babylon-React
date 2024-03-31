@@ -1,6 +1,5 @@
 import React, {useEffect, useState, useCallback} from "react";
 import {Vector3} from "@babylonjs/core";
-import FloatNodeUi from "../../UI/FloatNodeUi.jsx";
 import Vector3NodeUI from "../../UI/Vector3NodeUI.jsx";
 import {Handle, Position} from "react-flow-renderer";
 
@@ -11,9 +10,7 @@ const CreateBaseNode = ({data, action,title}) => {
     const [scale, setScale] = useState(data.scale);
     const [Size, setSize] = useState(data.Size);
     const [mesh, setMesh] = useState(null);
-    useEffect(() => {
- console.log("Creating new mesh in Babylon.js",data);
-    }, []);
+
 
     useEffect(() => {
         if (  data.mesh ) {
@@ -48,8 +45,8 @@ const CreateBaseNode = ({data, action,title}) => {
 
     const createMesh = useCallback(() => {
         if (!mesh) {
-            console.log("Creating new mesh with",data);
          setMesh(   action(position , rotation, scale, Size ));
+
         } else {
             console.log("Moving existing mesh in Babylon.js");
         }

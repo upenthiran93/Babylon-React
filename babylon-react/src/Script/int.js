@@ -38,8 +38,8 @@ export function initScreen(scene) {
     // const light = new DirectionalLight("light", new Vector3(10, -5, 4), scene);
     // light.intensity = 0.7;
     // check is the gltf loader is available
-    console.log(  SceneLoader.IsPluginForExtensionAvailable(".glb"));
-    console.log(  SceneLoader.IsPluginForExtensionAvailable(".gltf"));
+    // console.log(  SceneLoader.IsPluginForExtensionAvailable(".glb"));
+    // console.log(  SceneLoader.IsPluginForExtensionAvailable(".gltf"));
 
 
     // SceneLoader.ImportMesh("","./", "Astronaut.glb",scene, function (meshes) {
