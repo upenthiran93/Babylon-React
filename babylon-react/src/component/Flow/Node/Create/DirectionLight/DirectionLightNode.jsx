@@ -4,6 +4,7 @@ import {Vector3 , Color3} from "@babylonjs/core";
 import CreateBaseNode from "../CreateBaseNode.jsx";
 import Vector3NodeUI from "../../../UI/Vector3NodeUI.jsx";
 import ColorInput from "../../../UI/ColorInput.jsx";
+import FloatNodeUi from "../../../UI/FloatNodeUi.jsx";
 
 const DirectionLightNode = ({data}) => {
     const Context = useContext(SelectedObjectContext);
@@ -57,7 +58,7 @@ const DirectionLightNode = ({data}) => {
         <div className="node cube">
             <CreateBaseNode data={data} action={createDirectionLight} title={"Direction Light"}/>
             <Vector3NodeUI title={"Direction"} name={"position"} handleChange={handlePositionChange}/>
-
+               <FloatNodeUi title={"Intensity"}  handleChange={(event) => { if (Dlight) Dlight.intensity = parseFloat(event.target.value)}}/>
             <ColorInput title={"Color"} name={"Color"} handleChange={(color) => SetColor(color)}/>
         </div>)
 };
