@@ -140,3 +140,13 @@ button {
 .node .text-input{
     width: 100%;
 }
+.ColorInputNode {
+    align-items: center;
+    height: 30px;
+    display: inline-flex;
+    min-width: 100px;
+}
+.node .ColorInputNode input {
+   margin-left : 40px;
+   width: 80%;
+}
